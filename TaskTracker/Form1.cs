@@ -1,5 +1,6 @@
 using Npgsql;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 
 namespace TaskTracker
 {
@@ -10,18 +11,24 @@ namespace TaskTracker
             InitializeComponent();
         }
 
-        private void InsertRecord()
+        ///Function to add new task into 
+        private void InsertTask()
         {
+            ///Properly formats Date strings that will be added to database
+            string dateCompleteBy = DateCompleteBy.Value.ToString();
+            int dateCompleteBySpaceIndex = dateCompleteBy.IndexOf(" ");
+            dateCompleteBy = dateCompleteBy.Substring(0, dateCompleteBySpaceIndex+1);
+
+            string dateStartedAt = DateTime.Today.ToString();
+            int dateStartedAtSpaceIndex = dateStartedAt.IndexOf(" ");
+            dateStartedAt = dateStartedAt.Substring(0, dateStartedAtSpaceIndex+1);
+
             using (NpgsqlConnection con = GetConnection())
             {
-                string query = @"insert into public.Tasks(Name,Fees)values('Gautum',200.0)";
+                string query = @$"insert into public.Tasks(name,description,completeBy,startedAt)values('{TextName.Text}','{TextDescription.Text}','{dateCompleteBy}','{dateStartedAt}')";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, con);
                 con.Open();
                 int n = cmd.ExecuteNonQuery();
-                if (n == 1)
-                {
-                    TextName.Text = "Juan";
-                }
             }
         }
 
@@ -32,14 +39,13 @@ namespace TaskTracker
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
         {
-            ButtonSubmit.Text = "Sent";
-
-            //TestConnection();
-            InsertRecord();
+            
+            InsertTask();
+            ButtonSubmit.Text = "Task Added";
 
             ///Clear fields after submitting a task
             TextName.Text = "";
-            //TextDescription.Text = "";
+            TextDescription.Text = "";
 
         }
 

@@ -33,6 +33,8 @@
             this.LabelDescription = new System.Windows.Forms.Label();
             this.LabelName = new System.Windows.Forms.Label();
             this.ButtonSubmit = new System.Windows.Forms.Button();
+            this.DateCompleteBy = new System.Windows.Forms.DateTimePicker();
+            this.LabelCompleteBy = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TextName
@@ -72,7 +74,7 @@
             // 
             // ButtonSubmit
             // 
-            this.ButtonSubmit.Location = new System.Drawing.Point(232, 337);
+            this.ButtonSubmit.Location = new System.Drawing.Point(622, 369);
             this.ButtonSubmit.Name = "ButtonSubmit";
             this.ButtonSubmit.Size = new System.Drawing.Size(166, 69);
             this.ButtonSubmit.TabIndex = 4;
@@ -80,11 +82,29 @@
             this.ButtonSubmit.UseVisualStyleBackColor = true;
             this.ButtonSubmit.Click += new System.EventHandler(this.ButtonSubmit_Click);
             // 
+            // DateCompleteBy
+            // 
+            this.DateCompleteBy.Location = new System.Drawing.Point(53, 356);
+            this.DateCompleteBy.Name = "DateCompleteBy";
+            this.DateCompleteBy.Size = new System.Drawing.Size(200, 23);
+            this.DateCompleteBy.TabIndex = 5;
+            // 
+            // LabelCompleteBy
+            // 
+            this.LabelCompleteBy.AutoSize = true;
+            this.LabelCompleteBy.Location = new System.Drawing.Point(53, 338);
+            this.LabelCompleteBy.Name = "LabelCompleteBy";
+            this.LabelCompleteBy.Size = new System.Drawing.Size(75, 15);
+            this.LabelCompleteBy.TabIndex = 6;
+            this.LabelCompleteBy.Text = "Complete By";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LabelCompleteBy);
+            this.Controls.Add(this.DateCompleteBy);
             this.Controls.Add(this.ButtonSubmit);
             this.Controls.Add(this.LabelName);
             this.Controls.Add(this.LabelDescription);
@@ -104,5 +124,7 @@
         private Label LabelDescription;
         private Label LabelName;
         private Button ButtonSubmit;
+        private DateTimePicker DateCompleteBy;
+        private Label LabelCompleteBy;
     }
 }
