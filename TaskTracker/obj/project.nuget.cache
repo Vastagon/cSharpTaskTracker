@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "crc8ljjsKRNmLqWutDpOiSda8ZiUz2FSlG59pXJt+iwQUm0oIwKYUhvu9U0go+tqlIoCiSjvcUgYMW9ZgdtmDQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jyancey\\source\\repos\\TaskTracker\\TaskTracker\\TaskTracker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jyancey\\.nuget\\packages\\npgsql\\6.0.6\\npgsql.6.0.6.nupkg.sha512",
+    "C:\\Users\\jyancey\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
