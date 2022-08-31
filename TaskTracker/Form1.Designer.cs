@@ -35,6 +35,12 @@
             this.ButtonSubmit = new System.Windows.Forms.Button();
             this.DateCompleteBy = new System.Windows.Forms.DateTimePicker();
             this.LabelCompleteBy = new System.Windows.Forms.Label();
+            this.DataGridTasks = new System.Windows.Forms.DataGridView();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridTasks)).BeginInit();
             this.SuspendLayout();
             // 
             // TextName
@@ -98,11 +104,47 @@
             this.LabelCompleteBy.TabIndex = 6;
             this.LabelCompleteBy.Text = "Complete By";
             // 
+            // DataGridTasks
+            // 
+            this.DataGridTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridTasks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Name,
+            this.Description,
+            this.DueDate,
+            this.CreatedDate});
+            this.DataGridTasks.Location = new System.Drawing.Point(431, 48);
+            this.DataGridTasks.Name = "DataGridTasks";
+            this.DataGridTasks.RowTemplate.Height = 25;
+            this.DataGridTasks.Size = new System.Drawing.Size(357, 251);
+            this.DataGridTasks.TabIndex = 7;
+            this.DataGridTasks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridTasks_CellContentClick);
+            // 
+            // Name
+            // 
+            this.Name.HeaderText = "Name";
+            this.Name.Name = "Name";
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            // 
+            // DueDate
+            // 
+            this.DueDate.HeaderText = "Due Date";
+            this.DueDate.Name = "DueDate";
+            // 
+            // CreatedDate
+            // 
+            this.CreatedDate.HeaderText = "Created On";
+            this.CreatedDate.Name = "CreatedDate";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DataGridTasks);
             this.Controls.Add(this.LabelCompleteBy);
             this.Controls.Add(this.DateCompleteBy);
             this.Controls.Add(this.ButtonSubmit);
@@ -110,8 +152,8 @@
             this.Controls.Add(this.LabelDescription);
             this.Controls.Add(this.TextDescription);
             this.Controls.Add(this.TextName);
-            this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridTasks)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,5 +168,10 @@
         private Button ButtonSubmit;
         private DateTimePicker DateCompleteBy;
         private Label LabelCompleteBy;
+        private DataGridView DataGridTasks;
+        private DataGridViewTextBoxColumn Name;
+        private DataGridViewTextBoxColumn Description;
+        private DataGridViewTextBoxColumn DueDate;
+        private DataGridViewTextBoxColumn CreatedDate;
     }
 }

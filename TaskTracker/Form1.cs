@@ -39,7 +39,7 @@ namespace TaskTracker
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
         {
-            
+            PopulateDataGridView();
             InsertTask();
             ButtonSubmit.Text = "Task Added";
 
@@ -70,5 +70,33 @@ namespace TaskTracker
         {
             return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=Vastagon1;Database=TaskTrackerDatabase");
         }
+
+        private void DataGridTasks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void DataDridTasks_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+                e.Value = "ASD";
+        }
+        private async void PopulateDataGridView()
+        {
+            using (NpgsqlConnection con = GetConnection())
+            {
+                con.Open();
+                await using var cmd = new NpgsqlCommand("SELECT description FROM Tasks", con);
+                await using var reader = await cmd.ExecuteReaderAsync();
+
+                ///gets name/first column of SQL database
+                while (await reader.ReadAsync())
+                {
+                    Console.WriteLine(reader.GetString(0));
+                }
+
+            }
+        }
+
+
     }
 }
