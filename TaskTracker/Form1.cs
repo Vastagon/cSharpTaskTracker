@@ -1,15 +1,26 @@
 using Npgsql;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
+using System.Data.SqlClient;
 
 namespace TaskTracker
 {
+
     public partial class Form1 : Form
     {
+        SqlDataAdapter adpt;
+        DataTable dt;
+
         public Form1()
         {
             InitializeComponent();
         }
+
+        private void InitializeDataGridView()
+        {
+
+        }
+
+
 
         ///Function to add new task into 
         private void InsertTask()
@@ -39,7 +50,7 @@ namespace TaskTracker
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
         {
-            PopulateDataGridView();
+            ReadSQL();
             InsertTask();
             ButtonSubmit.Text = "Task Added";
 
@@ -71,16 +82,12 @@ namespace TaskTracker
             return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=Vastagon1;Database=TaskTrackerDatabase");
         }
 
-        private void DataGridTasks_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void DataDridTasks_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-                e.Value = "ASD";
+    
         }
-        private async void PopulateDataGridView()
+
+        private static async void ReadSQL()
         {
             using (NpgsqlConnection con = GetConnection())
             {
@@ -97,6 +104,55 @@ namespace TaskTracker
             }
         }
 
+        private async void ButtonQuery_Click(object sender, EventArgs e)
+        {
+            using (NpgsqlConnection con = GetConnection())
+            {
+                con.Open();
+                await using var cmd = new NpgsqlCommand(TextQuery.Text, con);
+                await using var reader = await cmd.ExecuteReaderAsync();
 
+                ///gets name/first column of SQL database
+                while (await reader.ReadAsync())
+                {
+                    Console.WriteLine(reader.GetString(0));
+                    TextQuery.Text = (string)reader.GetValue(0);
+                }
+
+
+            }
+        }
+
+      
+
+        private async void ButtonConnect_Click(object sender, EventArgs e)
+        {
+            string connetionString;
+            SqlConnection cnn;
+            connetionString = "Data Source=cnt-hou-lt-1283;Initial Catalog=Tasks;Integrated Security=True";
+            cnn = new SqlConnection(connetionString);
+            cnn.Open();
+            Console.WriteLine("MSSQL Connection Open!");
+
+            await using SqlCommand command = new SqlCommand("SELECT * FROM Tasks", cnn);
+            await using var reader = await command.ExecuteReaderAsync();
+
+            while (await reader.ReadAsync())
+            {
+                Console.WriteLine(reader.GetString(0));
+                TextQuery.Text = (string)reader.GetValue(0);
+            }
+
+            cnn.Close();
+            Console.WriteLine("MSSQL Connection Closed");
+
+            adpt = new SqlDataAdapter("select * from Tasks", cnn);
+            dt = new DataTable();
+            adpt.Fill(dt);
+            DataGridTasks.DataSource = dt;
+
+        }
+
+      
     }
 }
