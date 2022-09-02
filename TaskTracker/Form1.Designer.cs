@@ -40,21 +40,15 @@
             this.form1BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.ButtonConnect = new System.Windows.Forms.Button();
             this.coderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.coderBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.coderBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.coderBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.DataGridTasks = new System.Windows.Forms.DataGridView();
             this.coderBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.completeByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.startedAtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coderBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coderBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coderBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coderBindingSource4)).BeginInit();
             this.SuspendLayout();
@@ -141,24 +135,14 @@
             // 
             this.coderBindingSource.DataSource = typeof(TaskTracker.Coder);
             // 
-            // coderBindingSource1
-            // 
-            this.coderBindingSource1.DataSource = typeof(TaskTracker.Coder);
-            // 
-            // coderBindingSource2
-            // 
-            this.coderBindingSource2.DataSource = typeof(TaskTracker.Coder);
-            // 
-            // coderBindingSource3
-            // 
-            this.coderBindingSource3.DataSource = typeof(TaskTracker.Coder);
-            // 
             // DataGridTasks
             // 
+
             this.DataGridTasks.AutoGenerateColumns = false;
+
             this.DataGridTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridTasks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
+            this.name,
             this.descriptionDataGridViewTextBoxColumn,
             this.completeByDataGridViewTextBoxColumn,
             this.startedAtDataGridViewTextBoxColumn});
@@ -168,16 +152,17 @@
             this.DataGridTasks.RowTemplate.Height = 25;
             this.DataGridTasks.Size = new System.Drawing.Size(437, 251);
             this.DataGridTasks.TabIndex = 11;
+            this.DataGridTasks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridTasks_CellContentClick);
             // 
             // coderBindingSource4
             // 
             this.coderBindingSource4.DataSource = typeof(TaskTracker.Coder);
             // 
-            // nameDataGridViewTextBoxColumn
+            // name
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
             // 
             // descriptionDataGridViewTextBoxColumn
             // 
@@ -188,13 +173,13 @@
             // completeByDataGridViewTextBoxColumn
             // 
             this.completeByDataGridViewTextBoxColumn.DataPropertyName = "completeBy";
-            this.completeByDataGridViewTextBoxColumn.HeaderText = "Complete By";
+            this.completeByDataGridViewTextBoxColumn.HeaderText = "Finish By";
             this.completeByDataGridViewTextBoxColumn.Name = "completeByDataGridViewTextBoxColumn";
             // 
             // startedAtDataGridViewTextBoxColumn
             // 
             this.startedAtDataGridViewTextBoxColumn.DataPropertyName = "startedAt";
-            this.startedAtDataGridViewTextBoxColumn.HeaderText = "Started On";
+            this.startedAtDataGridViewTextBoxColumn.HeaderText = "Started At";
             this.startedAtDataGridViewTextBoxColumn.Name = "startedAtDataGridViewTextBoxColumn";
             // 
             // Form1
@@ -216,9 +201,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coderBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coderBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coderBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridTasks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coderBindingSource4)).EndInit();
             this.ResumeLayout(false);
@@ -239,12 +221,9 @@
         private BindingSource form1BindingSource1;
         private Button ButtonConnect;
         private BindingSource coderBindingSource;
-        private BindingSource coderBindingSource1;
-        private BindingSource coderBindingSource2;
-        private BindingSource coderBindingSource3;
-        private DataGridView DataGridTasks;
         private BindingSource coderBindingSource4;
-        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        public DataGridView DataGridTasks;
+        private DataGridViewTextBoxColumn name;
         private DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn completeByDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn startedAtDataGridViewTextBoxColumn;

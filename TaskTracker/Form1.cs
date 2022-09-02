@@ -1,4 +1,3 @@
-using Npgsql;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -105,6 +104,20 @@ namespace TaskTracker
             Console.WriteLine(dt);
             adpt.Fill(dt);
             DataGridTasks.DataSource = dt;
+        }
+
+        ///Opens a modal when clicked on that displays the information in the cell that was clicked
+        private void DataGridTasks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Console.WriteLine(DataGridTasks.SelectedColumns[0].HeaderText);
+            using(Form2 form2 = new Form2())
+           {
+                //form2.Text = DataGridTasks.SelectedColumns[0].HeaderText;
+                form2.Text = "Text Expanded";
+                form2.TextExpanded.Text = DataGridTasks.SelectedCells[0].Value + string.Empty;
+                form2.ShowDialog();
+            }
+
         }
     }
 }

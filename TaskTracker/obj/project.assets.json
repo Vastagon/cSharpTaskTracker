@@ -556,11 +556,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jyancey\\source\\repos\\TaskTracker\\TaskTracker\\TaskTracker.csproj",
+      "projectUniqueName": "C:\\Users\\jyancey\\source\\repos\\cSharpTaskTracker\\TaskTracker\\TaskTracker.csproj",
       "projectName": "TaskTracker",
-      "projectPath": "C:\\Users\\jyancey\\source\\repos\\TaskTracker\\TaskTracker\\TaskTracker.csproj",
+      "projectPath": "C:\\Users\\jyancey\\source\\repos\\cSharpTaskTracker\\TaskTracker\\TaskTracker.csproj",
       "packagesPath": "C:\\Users\\jyancey\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jyancey\\source\\repos\\TaskTracker\\TaskTracker\\obj\\",
+      "outputPath": "C:\\Users\\jyancey\\source\\repos\\cSharpTaskTracker\\TaskTracker\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jyancey\\AppData\\Roaming\\NuGet\\NuGet.Config",

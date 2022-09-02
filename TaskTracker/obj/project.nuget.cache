@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JBARJDa5YEs9hbx4sSxSBuRiXWao5WvAjUwVx5QnDsrCfypECbr0+1uIo44h/vmhnIT2aTh8xf46IJ/kpBeYfw==",
+  "dgSpecHash": "+jrUJwhmWF2TO9sdJhFCoTZAWDc+jD1MbiQ8cx9KPngBCuWxYsERXEei8Y9GNsz4BbXPX8F5gAy0d5ZjG0dQTQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jyancey\\source\\repos\\TaskTracker\\TaskTracker\\TaskTracker.csproj",
+  "projectFilePath": "C:\\Users\\jyancey\\source\\repos\\cSharpTaskTracker\\TaskTracker\\TaskTracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jyancey\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\jyancey\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
