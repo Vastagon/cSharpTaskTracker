@@ -13,12 +13,11 @@ namespace TaskTracker
         public Form1()
         {
             InitializeComponent();
+            refreshDataTable();
         }
 
-        private void InitializeDataGridView()
-        {
 
-        }
+        ///string query = @$"insert into public.Tasks(name,description,completeBy,startedAt)values('{TextName.Text}','{TextDescription.Text}','{dateCompleteBy}','{dateStartedAt}')";
 
 
 
@@ -34,13 +33,22 @@ namespace TaskTracker
             int dateStartedAtSpaceIndex = dateStartedAt.IndexOf(" ");
             dateStartedAt = dateStartedAt.Substring(0, dateStartedAtSpaceIndex+1);
 
-            using (NpgsqlConnection con = GetConnection())
-            {
-                string query = @$"insert into public.Tasks(name,description,completeBy,startedAt)values('{TextName.Text}','{TextDescription.Text}','{dateCompleteBy}','{dateStartedAt}')";
-                NpgsqlCommand cmd = new NpgsqlCommand(query, con);
-                con.Open();
-                int n = cmd.ExecuteNonQuery();
-            }
+            string connetionString;
+            SqlConnection con;
+            connetionString = "Data Source=cnt-hou-lt-1283;Initial Catalog=Tasks;Integrated Security=True";
+            con = new SqlConnection(connetionString);
+            con.Open();
+
+
+            string query = @$"insert into Tasks(name,description,completeBy,startedAt)values('{TextName.Text}','{TextDescription.Text}','{dateCompleteBy}','{dateStartedAt}')";
+            SqlCommand cmd = new SqlCommand(query, con);
+            int n = cmd.ExecuteNonQuery();
+
+            refreshDataTable();
+
+            con.Close();
+
+
         }
 
         private void TextName_TextChanged(object sender, EventArgs e)
@@ -50,7 +58,6 @@ namespace TaskTracker
 
         private void ButtonSubmit_Click(object sender, EventArgs e)
         {
-            ReadSQL();
             InsertTask();
             ButtonSubmit.Text = "Task Added";
 
@@ -60,67 +67,11 @@ namespace TaskTracker
 
         }
 
-        private void TextDescription_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void TestConnection()
-        {
-            using(NpgsqlConnection con = GetConnection())
-            {
-                con.Open();
-                if(con.State == ConnectionState.Open)
-                {
-                    TextDescription.Text = "Connected";
-                }
-            }
-        }
-
-        private static NpgsqlConnection GetConnection()
-        {
-            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=Vastagon1;Database=TaskTrackerDatabase");
-        }
-
-        private void DataDridTasks_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-    
-        }
-
-        private static async void ReadSQL()
-        {
-            using (NpgsqlConnection con = GetConnection())
-            {
-                con.Open();
-                await using var cmd = new NpgsqlCommand("SELECT description FROM Tasks", con);
-                await using var reader = await cmd.ExecuteReaderAsync();
-
-                ///gets name/first column of SQL database
-                while (await reader.ReadAsync())
-                {
-                    Console.WriteLine(reader.GetString(0));
-                }
-
-            }
-        }
 
         private async void ButtonQuery_Click(object sender, EventArgs e)
         {
-            using (NpgsqlConnection con = GetConnection())
-            {
-                con.Open();
-                await using var cmd = new NpgsqlCommand(TextQuery.Text, con);
-                await using var reader = await cmd.ExecuteReaderAsync();
 
-                ///gets name/first column of SQL database
-                while (await reader.ReadAsync())
-                {
-                    Console.WriteLine(reader.GetString(0));
-                    TextQuery.Text = (string)reader.GetValue(0);
-                }
-
-
-            }
         }
 
       
@@ -132,27 +83,28 @@ namespace TaskTracker
             connetionString = "Data Source=cnt-hou-lt-1283;Initial Catalog=Tasks;Integrated Security=True";
             cnn = new SqlConnection(connetionString);
             cnn.Open();
-            Console.WriteLine("MSSQL Connection Open!");
 
             await using SqlCommand command = new SqlCommand("SELECT * FROM Tasks", cnn);
             await using var reader = await command.ExecuteReaderAsync();
 
-            while (await reader.ReadAsync())
-            {
-                Console.WriteLine(reader.GetString(0));
-                TextQuery.Text = (string)reader.GetValue(0);
-            }
 
             cnn.Close();
-            Console.WriteLine("MSSQL Connection Closed");
 
-            adpt = new SqlDataAdapter("select * from Tasks", cnn);
-            dt = new DataTable();
-            adpt.Fill(dt);
-            DataGridTasks.DataSource = dt;
+            refreshDataTable();
 
         }
 
-      
+        private void refreshDataTable()
+        {
+            SqlConnection cnn;
+            string connetionString = "Data Source=cnt-hou-lt-1283;Initial Catalog=Tasks;Integrated Security=True";
+            cnn = new SqlConnection(connetionString);
+            ///Fills dataTable with sql data
+            adpt = new SqlDataAdapter("select * from Tasks", cnn);
+            dt = new DataTable();
+            Console.WriteLine(dt);
+            adpt.Fill(dt);
+            DataGridTasks.DataSource = dt;
+        }
     }
 }
